@@ -1,0 +1,82 @@
+$primary-color: rgb(40, 40, 66);
+$secondary-color:rgb(58, 110, 165);
+$gray-color:rgb(159, 159, 159);
+$light-color:rgb(235, 235, 235);
+$orange-color:rgb(209, 69, 50);
+$black-color:rgb(22, 26, 29);
+$border-color:rgb(208, 215, 222);
+
+
+section.item-container {
+    display: block;
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .aside {
+        display: none;
+    }
+}
+
+    @media  (min-width: 380px) {
+    /* Target devices wider than 380px. */
+
+    section {
+        h2 {
+            font-size: 20px;
+        }
+    }
+
+    }
+
+
+
+    @media  (min-width: 768px) {
+        /* Target devices wider than 768px. */
+
+        .item-container {
+            display: flex;
+        justify-content: space-around;
+        
+            .booking-section {
+                flex-direction: column;
+            }
+        
+            .cal-section {
+                width: 75%;
+            }
+        
+        
+            
+           .button {
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .form-container {
+                display: flex;
+                //justify-content: space-between;
+                padding: 20px 40px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 12px 15px rgba(0, 0, 0, 0.02);
+                line-height: 1.125em;
+        
+                p {
+                    padding: 0;
+                }
+            }
+            
+            .card {
+        
+                .name {
+                    width: 100%;
+                    margin-bottom: 18px;
+                }
+            }
+
+      }
+
+
+}

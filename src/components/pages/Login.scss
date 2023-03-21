@@ -1,0 +1,47 @@
+.login-wrapper {
+  border: 1px solid #CDCDCD;
+  padding: 40px;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+label {
+  font-weight: 400;
+}
+label, select {
+  display: block;
+}
+
+select, button {
+  width: 100%;
+  padding: 3px;
+  margin: 3px 0;
+  font-size: 100%;
+  border-radius: 0px;
+  border: 1px solid LightGrey; 
+}
+
+select {
+  background: White;
+  margin-bottom: 30px;
+}
+
+button {
+  background: LightGrey;
+}
+
+button:hover {
+  background-color:#1c313a ;
+  color: white;
+}
+
+
+.formError {
+  color:#1c313a;
+}

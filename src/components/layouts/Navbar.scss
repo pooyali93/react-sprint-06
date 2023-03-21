@@ -1,0 +1,75 @@
+@import "../../global.scss";
+
+
+nav {
+  overflow: hidden;
+    flex-direction: column;
+    border-left: 1px solid #cdcdcd;
+    border-right: 1px solid #cdcdcd;
+
+  .profile {
+      display: none;
+  }
+ 
+  div.navItem {
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    
+}
+  div.navItem:hover {
+    background:  #cdcdcd;
+  }
+  div.navItem a {
+  color: #161616;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 12px 40px;
+  border: none;
+
+}
+
+ a.active {
+  background:  #cdcdcd;
+  border: none;
+}
+
+
+}
+
+@media screen and (min-width: 768px) {
+  nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  nav div.profile {
+      display: block;
+      padding: 2rem;
+      margin-bottom: 40px;
+      img.circular--square { 
+
+          width: 100px;
+          height: 100px;
+          margin: 5px 30px;
+          border-radius: 50%; 
+      }
+      p {
+          font-size: 1.4rem;
+          color: #fff;
+      }
+  }
+ 
+}
+
+@media screen and (min-width: 1024px) {
+ 
+
+
+}
+
+@media screen and (min-width: 1224px) {   
+
+}
