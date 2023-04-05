@@ -20,8 +20,8 @@ export default function Form({ children, onSubmit, onCancel }) {
       </div>
 
       <div  className="button">
-          <Button color='rgb(58, 110, 165)' text='Submit' onClick={ handleSubmit}></Button>
-          <Button color='rgb(209, 69, 50)' text='Cancel' onClick={handleCancel}></Button>
+          <Button color='rgb(58, 110, 165)' text='Submit' onCancel={handleCancel} onClick={ handleSubmit}></Button>
+
       </div>
       
     </div>
@@ -62,7 +62,7 @@ function useForm(initialRecord, {isValid, errorMessage}, onSubmit,onCancel) {
     const newValue = value ;
     console.log(newValue, "this is my new value")
     setRecord({ ...record, [name]: newValue});
-   // setErrors({...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]}); //118 :
+    setErrors({...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]}); //118 :
   };
 
   const isValidRecord = (record) => {
@@ -82,6 +82,7 @@ function useForm(initialRecord, {isValid, errorMessage}, onSubmit,onCancel) {
   }
 
   const handleSubmit = () => {
+    console.log("form HandleSubmit")
     isValidRecord(record) && onSubmit(record) && onCancel(); 
     setErrors({...errors});
   }

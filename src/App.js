@@ -7,6 +7,7 @@ import './App.css';
 import Vehicles from './components/pages/Vehicles.js';
 import Users from './components/pages/Users.js';
 import { AuthProvider } from './components/auth/useAuth.js';
+import Feedbacks from './components/pages/Feedbacks.js';
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
          <Route path='/bookings' element={<MyBookings/>}></Route>          
           <Route path='/vehicles' element={<Vehicles/>}></Route>
           <Route path='/users' element={<Users/>}></Route>
+          <Route path='/feedbacks' element={<Feedbacks/>}></Route>
           <Route path='/' element={<Login/>}></Route>
           <Route path='/*' element={<PageNotFound/>}></Route>
          </Routes>

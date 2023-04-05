@@ -4,23 +4,23 @@ import Form from '../UI/Form';
 const emptyVehicle = {
     VEHICLE_ID:1,
     VEHICLEURL: "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    MAKE: "Land Rover",
-    MODEL: "Range Rover",
+    MAKE: "Audi",
+    MODEL: "A3",
     COLOUR: "White",
     MODELYEAR: 2013,
     NOOFDOORS: "5dr",
     PRICE: 18495,
     FUELTYPE: "Petrol",
     TRANSMISSION: "Automatic",
-    ENGINESIZE: "2.5",
-    MILEAGE: 13743
+    ENGINESIZE: "2.0",
+    MILEAGE: 13743,
 }
 
 export default function VehicleForm({onSubmit,onCancel, initialVehicle=emptyVehicle}){
     // Initialisation ---------
     const validation = {
        isValid: { 
-        VehicleId: (vid) =>  /^\d+$/.test(vid),
+        VEHICLE_ID: (vid) =>  /^\d+$/.test(vid),
       },
       errorMessage: {
         VEHICLEURL: "Image URL is not valid",
@@ -28,14 +28,18 @@ export default function VehicleForm({onSubmit,onCancel, initialVehicle=emptyVehi
         MODEL: "Vehicle Model does not exist",
         COLOUR: "Vehicle Colour does not exist",
         MODELYEAR: "Vehicle Year must be a number",
+        NOOFDOORS: "Vehicle door is either 3dr or 5dr",
         PRICE: "Vehicle Price must be a number",
-        MILEAGE: "Vehicle Mileage must be between 0 % 99999999",
+        FUELTYPE: "Desiel, Petrol, Electric",
+        TRANSMISSION: "Automatic or Manual",
+        ENGINESIZE: "Engine Size must be between 1 and 4",
+        MILEAGE:"Vehicle Mileage must be between 0 % 99999999",
 
       }
     }
     // State  ---------
     
-    const [vehicles, errors, handleChange, handleSubmit] = Form.useForm(initialVehicle, validation, onSubmit,onCancel);
+    const [vehicle, errors, handleChange, handleSubmit] = Form.useForm(initialVehicle, validation, onSubmit,onCancel);
    // const [vehicles, , loadVehicleMessage, ] = useLoad('/vehicles');
  
     // Handler ---------  
@@ -51,7 +55,7 @@ export default function VehicleForm({onSubmit,onCancel, initialVehicle=emptyVehi
         <input 
             type="url"
             name="VEHICLEURL"
-            value={vehicles.VEHICLEURL}
+            value={vehicle.VEHICLEURL}
             onChange={handleChange}
         />
       </Form.Item>
@@ -64,72 +68,124 @@ export default function VehicleForm({onSubmit,onCancel, initialVehicle=emptyVehi
         <input 
             type="text"
             name="MAKE"
-            value={vehicles.MAKE}
+            value={vehicle.MAKE}
             onChange={handleChange}
         />
       </Form.Item>  
       <Form.Item
         label ="Vehicle Model"
         htmlFor="MODEL"
-        advice="Please Enter Image Model"
+        advice="Please Enter Vehicle Model"
         error={errors.MODEL}
       >
         <input 
             type="text"
             name="MODEL"
-            value={vehicles.MODEL}
+            value={vehicle.MODEL}
             onChange={handleChange}
         />
       </Form.Item>  
       <Form.Item
         label ="Vehicle Colour"
         htmlFor="COLOUR"
-        advice="Please Enter Image Colour"
+        advice="Please Enter Vehicle Colour"
         error={errors.COLOUR}
       >
         <input 
             type="text"
             name="COLOUR"
-            value={vehicles.COLOUR}
+            value={vehicle.COLOUR}
             onChange={handleChange}
         />
       </Form.Item>  
       <Form.Item
         label ="Vehicle Year"
         htmlFor="MODELYEAR"
-        advice="Please Enter Image Year"
+        advice="Please Enter Vehicle Year"
         error={errors.MODELYEAR}
       >
         <input 
             type="number"
             name="MODELYEAR"
-            value={vehicles.MODELYEAR}
+            value={vehicle.MODELYEAR}
+            onChange={handleChange}
+        />
+      </Form.Item>
+      <Form.Item
+        label ="Number Of doors"
+        htmlFor="NOOFDOORS"
+        advice="Please Enter Vehicle Year"
+        error={errors.NOOFDOORS}
+      >
+        <input 
+            type="text"
+            name="NOOFDOORS"
+            value={vehicle.NOOFDOORS}
             onChange={handleChange}
         />
       </Form.Item>  
       <Form.Item
         label ="Vehicle Price"
         htmlFor="PRICE"
-        advice="Please Enter Image Price"
+        advice="Please Enter Vehicle Price"
         error={errors.PRICE}
       >
         <input 
             type="number"
             name="PRICE"
-            value={vehicles.PRICE}
+            value={vehicle.PRICE}
             onChange={handleChange}
         />
-      </Form.Item>  
+      </Form.Item>
+      <Form.Item
+        label ="Vehicle Fuel Type"
+        htmlFor="FUELTYPE"
+        advice="Please Enter Vehicle FUELTYPE"
+        error={errors.FUELTYPE}
+      >
+        <input 
+            type="text"
+            name="FUELTYPE"
+            value={vehicle.FUELTYPE}
+            onChange={handleChange}
+        />
+      </Form.Item> 
+      <Form.Item
+        label ="Vehicle TRANSMISSION"
+        htmlFor="TRANSMISSION"
+        advice="Please Enter Vehicle TRANSMISSION"
+        error={errors.TRANSMISSION}
+      >
+        <input 
+            type="text"
+            name="TRANSMISSION"
+            value={vehicle.TRANSMISSION}
+            onChange={handleChange}
+        />
+      </Form.Item>
+      <Form.Item
+        label ="Vehicle Engine Size"
+        htmlFor="ENGINESIZE"
+        advice="Please Enter Vehicle Engine Size"
+        error={errors.ENGINESIZE}
+      >
+        <input 
+            type="number"
+            name="ENGINESIZE"
+            value={vehicle.ENGINESIZE}
+            onChange={handleChange}
+        />
+      </Form.Item>
       <Form.Item
         label ="Vehicle Mileage"
         htmlFor="MILEAGE"
-        advice="Please Enter Image Mileage"
+        advice="Please Enter Vehicle Mileage"
         error={errors.MILEAGE}
       >
         <input 
             type="number"
             name="MILEAGE"
-            value={vehicles.MILEAGE}
+            value={vehicle.MILEAGE}
             onChange={handleChange}
         />
       </Form.Item>   

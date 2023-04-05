@@ -3,6 +3,7 @@ import useLoad from '../api/useLoad';
 import DatePicker from "react-datepicker";
 import "../entities/react-datepicker.css";
 import { setHours, setMinutes } from "date-fns";
+import moment from "moment"
 
 
 const emptyBooking = {
@@ -15,20 +16,19 @@ const emptyBooking = {
 export default function BookingForm({ onSubmit, onCancel, initialBooking = emptyBooking }) {
 
   // Hooks 
-  // const [dateBooked, setDateBooked] = useState(new Date());
   // Initialisation ---------
   const validation = {
     isValid: {
-      VEHICLE_ID: (vid) => /^\d+$/.test(vid),
-      CUST_ID: (cid) => /^\d+$/.test(cid),
-      EMP_ID: (sid) => (sid > 5) && (sid < 13),
-     // DATEBOOKED: (date) => /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]/.test(date)
+      VEHICLE_ID: (id) => id !== 0,
+      Customer_ID: (id) => id !== 0,
+      Sales_ID: (id) => id !== 0,
+      DATEBOOKED: (date) => /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]/.test(date)
 
     },
     errorMessage: {
       VEHICLE_ID: "Vehicle id must be a number",
-      CUST_ID: "customer is not selected",
-      EMP_ID: "Please select a salesperson",
+      Customer_ID: "customer is not selected",
+      Sales_ID: "Please select a salesperson",
       DATEBOOKED: "Please enter the date"
     }
   }
@@ -37,6 +37,12 @@ export default function BookingForm({ onSubmit, onCancel, initialBooking = empty
   const [vehicles, , loadVehicleMessage,] = useLoad('/vehicles');
   const [customers, , loadCustomerMessage,] = useLoad('/users/customers');
   const [salesperson, , loadSaleMessage,] = useLoad('/users/sales');
+
+  const utcDate = new Date(booking.DATEBOOKED);
+
+  // Set the timezone offset to UK timezone (UTC+1)
+  const ukOffset = 60; // in minutes
+  const ukDate = new Date(utcDate.getTime() + ukOffset * 60 * 1000);
 
 
   // Handler ---------  
@@ -59,7 +65,7 @@ export default function BookingForm({ onSubmit, onCancel, initialBooking = empty
                 value={booking.VEHICLE_ID}
                 onChange={handleChange}
               >
-                <option value="0" disabled>None Selected</option>
+                <option value="0">None Selected</option>
                 {
                   vehicles.map((vehicle) => <option key={vehicle.VEHICLE_ID} value={vehicle.VEHICLE_ID}>{vehicle.MAKE} {vehicle.MODEL} - {vehicle.MODELYEAR} £{vehicle.PRICE}</option>)
                 }
@@ -125,7 +131,8 @@ export default function BookingForm({ onSubmit, onCancel, initialBooking = empty
         error={errors.DATEBOOKED}
       >
         <DatePicker
-          selected={new Date(booking.DATEBOOKED)}
+          //selected={new Date(booking.DATEBOOKED)}
+          selected={ukDate}
           onChange={date => handleChange({ target: { name: 'DATEBOOKED', value: date.toISOString().slice(0, 19).replace('T', ' ') } })}
           dateFormat="yyyy-MM-dd HH:mm:ss"
           showTimeSelect
@@ -133,10 +140,7 @@ export default function BookingForm({ onSubmit, onCancel, initialBooking = empty
           minTime={setHours(setMinutes(new Date(), 0), 9)}
           maxTime={setHours(setMinutes(new Date(), 0), 18)}
           timeFormat="HH:mm:ss"
-          name="DATEBOOKED"
-          
-        />
-
+          name="DATEBOOKED" />
       </Form.Item>
     </Form>
   )

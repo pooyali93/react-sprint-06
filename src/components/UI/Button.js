@@ -5,7 +5,7 @@ import './Button.scss'
 export default function Button({ iconName, color, text,  onClick, }) {
 
     return (
-      <button  style={{backgroundColor:color}} className="btn" onClick={onClick}>
+      <button  style={{backgroundColor:color}} className="button" onClick={onClick}>
         {iconName} {text}
       </button>
     );

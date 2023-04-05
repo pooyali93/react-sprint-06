@@ -26,6 +26,7 @@ export default function Vehicles() {
             ? loadVehicles(endpoint)  || true
             : false;
     }
+
     // View ---------
     return (
         <section>
@@ -45,7 +46,7 @@ export default function Vehicles() {
                         ? <p>You have no vehicle in stock</p>
                         : vehicles.map((vehicle) =>
                         <Panel 
-                            key={vehicles.VEHICLE_ID} 
+                            key={vehicle.VEHICLE_ID} 
                             title={`${vehicle.VEHICLE_ID}, ${vehicle.MAKE} ${vehicle.MODEL} ${vehicle.MODELYEAR} ${vehicle.COLOUR} £${vehicle.PRICE}`} 
                         >
                         <div className="card">

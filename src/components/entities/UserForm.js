@@ -6,9 +6,9 @@ const emptyUser = {
     LASTNAME: "Cena",
     STREET: "1 Kingston Road",
     CITY: "Kingston",
-    POSTCODE: "KT1 2AS",
+    POSTCODE: "KT12AS",
     EMAIL: "john.cena@kingston.uk",
-    PHONENO: "+44 7987 456 7766",
+    PHONENO: "+447955592159",
 
 }
 
@@ -16,7 +16,7 @@ export default function UserForm({onSubmit,onCancel, initialUser=emptyUser}){
     // Initialisation ---------
     const validation = {
        isValid: { 
-        USER_ID: (Cid) =>  /^\d+$/.test(Cid),
+        USER_ID: (cid) =>  /^\d+$/.test(cid),
       },
       errorMessage: {
         FIRSTNAME: "First name must be only in letters",

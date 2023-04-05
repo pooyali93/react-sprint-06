@@ -21,6 +21,9 @@ export default function Navbar() {
                 <NavLink to="/users">Users</NavLink>
             </div>
             <div className="navItem">
+                <NavLink to="/feedbacks">Reviews</NavLink>
+            </div>
+            <div className="navItem">
                 <NavLink to="/" >Log in</NavLink>
             </div>
         </nav>

@@ -1,10 +1,10 @@
-import { useState } from "react";
 import API from "../api/API.js";
 import useLoad from "../api/useLoad.js";
 import './MyBookings.scss'
 import BookingForm from "../entities/BookingForm";
 import BookingPanels from "../entities/BookingPanels.js";
 //import { useAuth } from '../auth/useAuth.js';
+import { useState } from "react";
 
 
 export default function MyBookings() {
@@ -24,6 +24,7 @@ export default function MyBookings() {
     const cancelAddForm = () => setShowAddBookingForm(false);
 
     const handleAddSubmit = async (booking) => {
+        console.log(`handleAddSubmit ${booking}` );
         const response = await API.post(endpoint, booking);
         return response.isSuccess
             ? loadBookings(endpoint) || true

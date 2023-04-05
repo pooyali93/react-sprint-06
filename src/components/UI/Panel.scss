@@ -1,6 +1,14 @@
+.panelContainer {
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+}
+
 .panel {
   padding: 0 10px;
+  width: 100%;
 }
+
 
 .item {
   background: #FFF;
